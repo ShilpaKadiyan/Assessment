@@ -61,31 +61,3 @@ int main()
     }
 	return 0;
 }
-
-
-
-OUTPUT:
-The charges for your parking are: 100 Rands
-Please input your amount in Rands: 
-50
-The amount recieved is: 50 Rands
-The amount is 50 Rands less, Please enter more amount: 
-20
-The amount recieved is: 70 Rands
-The amount is 30 Rands less, Please enter more amount: 
-200
-
-
-The total amount recieved is: 270 Rands
-
-Denominations of Cashback amount : 170 Rands:
-200 Rand : 0
-100 Rand : 1
-50 Rand : 1
-20 Rand : 1
-10 Rand : 0
-5 Rand : 0
-2 Rand : 0
-1 Rand : 0
-The cashback amount is: 170 Rands,Please collect. 
-Thank you, visit again.

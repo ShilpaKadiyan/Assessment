@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <math.h>
+
+int * denominations(int amt, int chrg)
+{
+    static int denominations_array[8];
+    int balance_amount = amt - chrg; //balance amount 
+    printf("Denominations of Cashback amount : %d Rands:\n",balance_amount);
+    int rands = 0;
+    
+    // currency denominations in Rands
+    int denominations_rands[8] = {200, 100, 50, 20, 10, 5,2,1}; // Denominations used in Rands, Source : wikipedia
+    
+    //printf("Currency Denominations in Rands: \n");
+    for (int i = 0; i < 8; i++) 
+    {
+        rands = balance_amount / denominations_rands[i];
+        denominations_array[i] = rands; //inserting Denomination values in array
+        balance_amount = balance_amount % denominations_rands[i]; // remaining money
+    }
+    return denominations_array;
+}
+
+int main() 
+{
+    int amount = 0;
+    int addamount = 0;
+    int cashback = 0;
+    int parking_charges=100; 	    //parking charges assumed
+    int *p;
+    int denominations_rands[8] = {200, 100, 50, 20, 10, 5,2,1}; // Denominations in Rands, Source : wikipedia
+    printf("The charges for your parking are: %d Rands\n",parking_charges);
+    
+    printf("Please input your amount in Rands: \n");
+    scanf("%d", &amount); //input from user
+    
+	
+    while(amount<parking_charges) //validating the amount entered by user
+     {
+        printf("The amount recieved is: %d Rands\n",amount);
+        printf("The amount is %d Rands less, Please enter more amount: \n",parking_charges-amount);
+	    scanf("%d", &addamount);
+	    amount=amount+addamount;
+     }
+	
+    printf("\n\nThe total amount recieved is: %d Rands\n\n",amount);
+
+    p=denominations(amount,parking_charges); //function call
+    for ( int i = 0; i < 8; i++ ) //retreiving the denominations_array
+     {
+      printf( "%d Rand : %d\n", denominations_rands[i], *(p + i)); // producing denominations 
+      cashback = cashback + (denominations_rands[i]*(*(p+i))); //adding denominations values
+     }
+    if(cashback>0) //cashback is available
+    {
+        printf("The cashback amount is: %d Rands,Please collect. \nThank you, visit again.",cashback);
+    }
+    else //no cashback
+    {
+        printf("No cashback.\nThank you, visit again."); 
+    }
+	return 0;
+}
+
+
+
+OUTPUT:
+The charges for your parking are: 100 Rands
+Please input your amount in Rands: 
+50
+The amount recieved is: 50 Rands
+The amount is 50 Rands less, Please enter more amount: 
+20
+The amount recieved is: 70 Rands
+The amount is 30 Rands less, Please enter more amount: 
+200
+
+
+The total amount recieved is: 270 Rands
+
+Denominations of Cashback amount : 170 Rands:
+200 Rand : 0
+100 Rand : 1
+50 Rand : 1
+20 Rand : 1
+10 Rand : 0
+5 Rand : 0
+2 Rand : 0
+1 Rand : 0
+The cashback amount is: 170 Rands,Please collect. 
+Thank you, visit again.
